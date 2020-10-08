@@ -128,3 +128,4 @@ nb-configuration.xml
 desarmadero.code-workspace
 .gitignore
 
+app/Config/App.php
