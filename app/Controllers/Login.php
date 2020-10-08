@@ -6,7 +6,7 @@ use App\Models\UserModel;
 class Login extends BaseController
 {
     public function __construct(){
-		helper ('form');
+		helper ('form'); //Este se podria poner en el autoload.
 	}
 
 
@@ -26,20 +26,24 @@ class Login extends BaseController
         function validate_usr()
         {
             $userModel = new UserModel();
-            $request = \Config\Services::request();
+            //$request = \Config\Services::request();
 
             $data['title'] = "Vista de usuario";
          
             /* Aca recuperamos del form el mail como usr y el nombre como pass */
-            $usrname = $request->getPost('username');
-            $usrpass = $request->getPost('password');
+            //Dentro del controller no es necesario instancia de $request usamos $this
+            $usrname = $this->request->getPost('username');
+            $usrpass = $this->request->getPost('password');
             
+            //El pasword no se muestra por que nunca lo pasas a la vista.
+            //Ademas ni siquiera esta en la base de datos.
+
             $data['usuario'] = $userModel->where('email',$usrname)->find();
             
             //$data = array('users'=>$usuario,'title'=>$title);
+            $estructura = view('template/header',$data).view('template/v_cont');
             
-            $estructura = view('template/header',$data).view('template/v_cont',$data);
-            
-            return $estructura;
+            return $estructura; //Esto tengo otra forma mas limpia de hacerlo, usando vistas parciales.
+
         }
 }

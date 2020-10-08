@@ -15,7 +15,7 @@ class UserModel extends Model
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted';
+    protected $deletedField  = 'deleted_at';
 
     protected $validationRules    = [
         'name' => 'required|alpha_numeric_space|min_length[3]',
@@ -26,11 +26,6 @@ class UserModel extends Model
             'is_unique' => 'Sorry, tu email esta siendo usado por otro usuario'
         ]
     ];
+
     protected $skipValidation     = true;
-    //protected $beforeInsert=['agregaAlgoName'];
-    //protected $beforeUpdate=['agregaAlgoName'];
-    protected function agregaAlgoName(array $data){
-            $data['data']['name']=$data['data']['name']." beforecode";
-            return $data;
-    }
 }
