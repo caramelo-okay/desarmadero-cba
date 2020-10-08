@@ -45,5 +45,20 @@ class Login extends BaseController
             
             return $estructura; //Esto tengo otra forma mas limpia de hacerlo, usando vistas parciales.
 
+            /*Otro tema, una vez que encuentra al usuario hay que hacer algunas acciones
+              - Que hacemos con el usuario, ? hay que meterlo en una variable de sesion o algo , por que si yo
+              refresco la pagina chau, se pierden los datos, por que pensa que se vuelve a ejecutar este metodo
+
+              http://codeigniter.com/user_guide/libraries/sessions.html
+
+              por lo tanto intenta leer datos de un formulario que no existe, dando como resultado un $data['usuario']=null
+              -hay que ver tema de permisos, segun el nivel de usuario, admin, etc.
+              Por eso hay que andar controlando en cada accion si sigue logueado y su lvl de acceso.
+              Para eso podrias copiar un metodo en cada constructor, un poco sucio y la idea es reutilizar codigo
+              se puede hacer un filter creo que se llama ahora. que se ejecute antes de cargar el controlador y controle esto y si no cumple lo saque fuera.
+
+              http://codeigniter.com/user_guide/incoming/filters.html?highlight=filter
+
+            */
         }
 }
